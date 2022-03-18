@@ -1,7 +1,9 @@
-DROP DATABASE IF EXISTS CMS_db
+/* drop tables if they exist */
+DROP TABLE IF EXISTS department;
+DROP TABLE IF EXISTS jobRole;
+DROP TABLE IF EXISTS employee;
 
-USE CMS_db
-
+/* create table for department, role and employee */ 
 CREATE TABLE department (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
