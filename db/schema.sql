@@ -3,6 +3,9 @@ DROP TABLE IF EXISTS department;
 DROP TABLE IF EXISTS jobRole;
 DROP TABLE IF EXISTS employee;
 
+/* use database */ 
+USE CMS_db;
+
 /* create table for department, role and employee */ 
 CREATE TABLE department (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
