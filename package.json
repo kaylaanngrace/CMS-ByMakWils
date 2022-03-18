@@ -1,0 +1,28 @@
+{
+  "name": "cms-bymakwils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaylaanngrace/CMS-ByMakWils.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaylaanngrace/CMS-ByMakWils/issues"
+  },
+  "homepage": "https://github.com/kaylaanngrace/CMS-ByMakWils#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "express": "^4.17.3",
+    "inquirer": "^8.2.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3"
+  }
+}
