@@ -1,8 +1,8 @@
 /* delete database if exists */ 
-DROP DATABASE IF EXISTS CMS_db
+DROP DATABASE IF EXISTS cms_db;
 
 /* create database */ 
-CREATE DATABASE CMS_db;
+CREATE DATABASE cms_db;
 
 /* used database */ 
-USE CMS_db
+USE cms_db;

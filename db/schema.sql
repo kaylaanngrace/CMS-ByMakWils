@@ -1,15 +1,15 @@
+/* use database */ 
+USE cms_db;
+
 /* drop tables if they exist */
 DROP TABLE IF EXISTS department;
 DROP TABLE IF EXISTS jobRole;
 DROP TABLE IF EXISTS employee;
 
-/* use database */ 
-USE CMS_db;
-
 /* create table for department, role and employee */ 
 CREATE TABLE department (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL,
+    depName VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE jobRole (

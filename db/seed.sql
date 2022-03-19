@@ -3,12 +3,12 @@ USE CMS_db;
 
 /* data for deparment table */
 INSERT INTO department 
-    (name)
+    (depName)
 VALUES 
     ("Information Tech"),
     ("Graphic Design"),
     ("Web Programming"),
-    ("Human Resources")
+    ("Human Resources");
 
 /* data for jobRole table */
 INSERT INTO jobRole 
@@ -18,7 +18,7 @@ VALUES
     ("FullStack Developer", 150000, 3),
     ("Graphic Designer", 120000, 2),
     ("Human Resources Lead", 125000, 4),
-    ("BackEnd Developer", 125000, 3)
+    ("BackEnd Developer", 125000, 3);
 
 
 /* data for employee table */
@@ -32,4 +32,4 @@ VALUES
     ("Leon", "Jones", 5, 3),
     ("Sara", "Lee", 2, 5),
     ("Betty", "White", 2, 5),
-    ("Fredick", "Hooper", 3, 2)
+    ("Fredick", "Hooper", 3, 2);
