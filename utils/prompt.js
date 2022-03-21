@@ -1,3 +1,8 @@
+const inquirer = require('inquirer');
+const mysql = require('mysql')
+const db = require('../db/connection');
+require('console.table');
+
 
 module.exports = function () {
     // Initial Prompts
@@ -122,12 +127,77 @@ module.exports = function () {
             }
         ])
         .then(function(answer) {
-            connection.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.eeFirstName, answer.eeLastName, answer.roleID, answer.managerID], function(err, res) {
+            connection.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.first_name, answer.last_name, answer.role_id, answer.manager_id], function(err, res) {
                 if (err) throw err;
                 console.table(res);
-                startScreen();
+                initialPrompt();
             });
         });
     };
+
+    // update employee prompt
+    function updateEmployee() {
+        inquirer
+        .prompt([
+        {
+            type: "input",
+            message: "Which employee would you like to update?",
+            name: "employeeUpdate"
+        },
+
+        {
+            type: "input",
+            message: "What do you want to update to?",
+            name: "updateRole"
+        }
+        ])
+        .then(function(answer) {
+
+            connection.query('UPDATE employee SET role_id=? WHERE first_name= ?',[answer.updateRole, answer.employeeUpdate],function(err, res) {
+                if (err) throw err;
+                console.table(res);
+                initialPrompt();
+            });
+        });
+    };
+
+    // view department prompt
+    function viewDepartment() {
+        // select from the database/table
+        let query = "SELECT * FROM department";
+        connection.query(query, function(err, res) {
+            if (err) throw err;
+            console.table(res);
+            initialPrompt();
+        });
+    };
+
+    // view roles prompt
+    function viewRoles() {
+        // select from the database/table
+        let query = "SELECT * FROM jobRole";
+        connection.query(query, function(err, res) {
+            if (err) throw err;
+            console.table(res);
+            initialPrompt();
+        });
+    };
+
+    // view employees prompt
+    function viewEmployees() {
+        // select from the databaset/table
+        let query = "SELECT * FROM employee";
+        connection.query(query, function(err, res) {
+            if (err) throw err;
+            console.table(res);
+            initialPrompt();
+        });
+    };
+      
+    // quit prompts 
+    function quit() {
+        db.end();
+        process.exit();
+    }
 };
 
