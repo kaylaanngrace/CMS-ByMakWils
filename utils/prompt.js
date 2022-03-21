@@ -1,6 +1,8 @@
-//What the user will first see once logged into node
-function startScreen() {
-    inquirer
+
+module.exports = function () {
+    // Initial Prompts
+    function startScreen() {
+        inquirer
         .prompt({
             type: "list",
             choices: [
@@ -43,6 +45,27 @@ function startScreen() {
                     break;
                 default:
                     quit();
-        }
-    });
-}
+
+            };
+        });
+    }; 
+
+
+    // add department prompt
+    function addDepartment() {
+        inquirer
+        .prompt({
+            type: "input",
+            message: "What is the name of the department?",
+            name: "deptName"
+        })
+        .then(function(answer){
+            connection.query("INSERT INTO department (name) VALUES (?)", [answer.deptName] , function(err, res) {
+                if (err) throw err;
+                console.table(res)
+                startScreen()
+            });
+        });
+    };
+};
+
