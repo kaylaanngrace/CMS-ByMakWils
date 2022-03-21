@@ -82,7 +82,7 @@ function addDepartment() {
         name: "depName"
     })
     .then(function(answer){
-        connection.query("INSERT INTO department (depName) VALUES (?)", [answer.depName] , function(err, res) {
+        db.query("INSERT INTO department (depName) VALUES (?)", [answer.depName] , function(err, res) {
             if (err) throw err;
             console.table(res)
             initialPrompt()
@@ -111,7 +111,7 @@ function addRole() {
         }
     ])
     .then(function(answer) {
-        connection.query("INSERT INTO jobRole (title, salary, department_id) VALUES (?, ?, ?)", [answer.title, answer.salary, answer.department_id], function(err, res) {
+        db.query("INSERT INTO jobRole (title, salary, department_id) VALUES (?, ?, ?)", [answer.title, answer.salary, answer.department_id], function(err, res) {
             if (err) throw err;
             console.table(res);
             initialPrompt();
@@ -145,7 +145,7 @@ function addEmployee() {
         }
     ])
     .then(function(answer) {
-        connection.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.first_name, answer.last_name, answer.role_id, answer.manager_id], function(err, res) {
+        db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.first_name, answer.last_name, answer.role_id, answer.manager_id], function(err, res) {
             if (err) throw err;
             console.table(res);
             initialPrompt();
@@ -171,7 +171,7 @@ function updateEmployee() {
     ])
     .then(function(answer) {
 
-        connection.query('UPDATE employee SET role_id=? WHERE first_name= ?',[answer.updateRole, answer.employeeUpdate],function(err, res) {
+        db.query('UPDATE employee SET role_id=? WHERE first_name= ?',[answer.updateRole, answer.employeeUpdate],function(err, res) {
             if (err) throw err;
             console.table(res);
             initialPrompt();
@@ -183,7 +183,7 @@ function updateEmployee() {
 function viewDepartment() {
     // select from the database/table
     let query = "SELECT * FROM department";
-    connection.query(query, function(err, res) {
+    db.query(query, function(err, res) {
         if (err) throw err;
         console.table(res);
         initialPrompt();
@@ -194,7 +194,7 @@ function viewDepartment() {
 function viewRoles() {
     // select from the database/table
     let query = "SELECT * FROM jobRole";
-    connection.query(query, function(err, res) {
+    db.query(query, function(err, res) {
         if (err) throw err;
         console.table(res);
         initialPrompt();
@@ -205,7 +205,7 @@ function viewRoles() {
 function viewEmployees() {
     // select from the databaset/table
     let query = "SELECT * FROM employee";
-    connection.query(query, function(err, res) {
+    db.query(query, function(err, res) {
         if (err) throw err;
         console.table(res);
         initialPrompt();
