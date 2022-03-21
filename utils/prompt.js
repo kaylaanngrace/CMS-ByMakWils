@@ -1,7 +1,7 @@
 
 module.exports = function () {
     // Initial Prompts
-    function startScreen() {
+    function initialPrompt() {
         inquirer
         .prompt({
             type: "list",
@@ -57,13 +57,42 @@ module.exports = function () {
         .prompt({
             type: "input",
             message: "What is the name of the department?",
-            name: "deptName"
+            name: "depName"
         })
         .then(function(answer){
-            connection.query("INSERT INTO department (name) VALUES (?)", [answer.deptName] , function(err, res) {
+            connection.query("INSERT INTO department (depName) VALUES (?)", [answer.depName] , function(err, res) {
                 if (err) throw err;
                 console.table(res)
-                startScreen()
+                initialPrompt()
+            });
+        });
+    };
+
+    // add role prompt
+    function addRole() {
+        inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "What's the name of the role?",
+                name: "title"
+            },
+            {
+                type: "input",
+                message: "What is the salary for this role?",
+                name: "salary"
+            },
+            {
+                type: "input",
+                message: "What is the department id number?",
+                name: "department_id"
+            }
+        ])
+        .then(function(answer) {
+            connection.query("INSERT INTO jobRole (title, salary, department_id) VALUES (?, ?, ?)", [answer.title, answer.salary, answer.department_id], function(err, res) {
+                if (err) throw err;
+                console.table(res);
+                initialPrompt();
             });
         });
     };
