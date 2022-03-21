@@ -50,7 +50,6 @@ module.exports = function () {
         });
     }; 
 
-
     // add department prompt
     function addDepartment() {
         inquirer
@@ -93,6 +92,40 @@ module.exports = function () {
                 if (err) throw err;
                 console.table(res);
                 initialPrompt();
+            });
+        });
+    };
+
+    // add employee prompt
+    function addEmployee() {
+        inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "What's the first name of the employee?",
+                name: "first_name"
+            },
+            {
+                type: "input",
+                message: "What's the last name of the employee?",
+                name: "last_name"
+            },
+            {
+                type: "input",
+                message: "What is the employee's role id number?",
+                name: "role_id"
+            },
+            {
+                type: "input",
+                message: "What is the manager id number?",
+                name: "manager_id"
+            }
+        ])
+        .then(function(answer) {
+            connection.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.eeFirstName, answer.eeLastName, answer.roleID, answer.managerID], function(err, res) {
+                if (err) throw err;
+                console.table(res);
+                startScreen();
             });
         });
     };
